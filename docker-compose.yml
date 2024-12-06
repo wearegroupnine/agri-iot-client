@@ -1,0 +1,10 @@
+
+services:
+        client-service:
+                image: client-service
+                container_name: client-service
+                network_mode: host
+                restart: unless-stopped
+
+                volumes:
+                        - ~/agri/images:/agri/images
