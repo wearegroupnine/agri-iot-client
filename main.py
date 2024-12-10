@@ -27,7 +27,7 @@ def monitor():
     raw_img = np.array(img).astype(np.uint8)
     cv2.imwrite(os.path.join(config.path_save_raw_dir,f"{timestamp}.png"), raw_img)
     cv2.imwrite(os.path.join(config.path_save_ai_dir, f"{timestamp}.png"), ai_img)
-    response = {"msg":"success"}
+    response = {"msg":"sucess", "raw": raw_img.tolist(), "ai":ai_img.tolist()}
     return jsonify(response), 200
 
 
@@ -43,7 +43,7 @@ def test_ai():
     raw_img = np.array(img).astype(np.uint8)
     cv2.imwrite(os.path.join(config.path_save_raw_dir, f"{timestamp}.png"), raw_img)
     cv2.imwrite(os.path.join(config.path_save_ai_dir, f"{timestamp}.png"), ai_img)
-    response = {"msg":"success"}
+    response = {"msg":"sucess", "raw": raw_img.tolist(), "ai":ai_img.tolist()}
     return jsonify(response), 200
 
 
