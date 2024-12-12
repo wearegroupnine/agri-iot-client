@@ -23,11 +23,11 @@ def monitor():
     data = {"img":img}
     response = requests.post(config.api_ai_service_obj, json=data)
     response = response.json()
-    ai_img = np.array(response["img"]).astype(np.uint8)
+    ai_img = np.array(response["ai"]).astype(np.uint8)
     raw_img = np.array(img).astype(np.uint8)
     cv2.imwrite(os.path.join(config.path_save_raw_dir,f"{timestamp}.png"), raw_img)
     cv2.imwrite(os.path.join(config.path_save_ai_dir, f"{timestamp}.png"), ai_img)
-    response = {"msg":"sucess", "raw": raw_img.tolist(), "ai":ai_img.tolist()}
+    response["raw"] = raw_img.tolist()
     return jsonify(response), 200
 
 
@@ -39,11 +39,11 @@ def test_ai():
     data = {"img":img}
     response = requests.post(config.api_ai_service_obj, json=data)
     response = response.json()
-    ai_img = np.array(response["img"]).astype(np.uint8)
+    ai_img = np.array(response["ai"]).astype(np.uint8)
     raw_img = np.array(img).astype(np.uint8)
     cv2.imwrite(os.path.join(config.path_save_raw_dir, f"{timestamp}.png"), raw_img)
     cv2.imwrite(os.path.join(config.path_save_ai_dir, f"{timestamp}.png"), ai_img)
-    response = {"msg":"sucess", "raw": raw_img.tolist(), "ai":ai_img.tolist()}
+    response["raw"] = raw_img.tolist()
     return jsonify(response), 200
 
 
